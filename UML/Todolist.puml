@@ -1,0 +1,61 @@
+@startuml
+class App{
++ main()
++ start()
+
+}
+class TodoListFunctions {
+ ArrayList<> TodoList
+ TodoListname: String
++ addTodoList()
++ editTask()
++ readFromFile()
++ saveToFile()
+}
+
+class TaskFunctions {
+  name: String
+  description: String
+  completed: boolean
+  markCompleted: boolean
+  markInComplete: boolean
+  LocalDate ? dueDate
++  setTaskName()
++  setTaskDescription()
++  setDueDate()
+}
+class ToDoListController {
++ toDoListEntries(ActionEvent): List of todolist entries
++ FileMenuOpenListButton(ActionEvent): Open list
++ FileMenuSaveAsButton(ActionEvent): Save list
++ FileMenuAddNewTODOList(ActionEvent): New TodoList
++ FileMenuRemoveTODOList(ActionEvent): Remove todolist
++ FileMenuCloseTODOList(ActionEvent): Close todolist
++ LoadSingleTodoList(ActionEvent): Load one todolist
++ LoadMultipleTodoList(ActionEvent): load multiple todolists
+}
+class TaskListController {
++ ListAddNewItem(ActionEvent): Add new task
++ ListEditItemDescription(ActionEvent): Add task description
++ ListEditItemName(ActionEvent): Edit name of task
++ ListRemoveItem(ActionEvent): Remove task
++ ListEditDueDateOfItem(ActionEvent): Edit due date of task
++ ListMarkItemComplete(ActionEvent): Mark task completed
++ DisplayAllItemsOfTodoList(ActionEvent): Display all tasks
++ DisplayIncompleteItemsOfTodoList(ActionEvent): Display incomplete tasks
++ DisplayCompleteItemsOfTodoList(ActionEvent): Display completed tasks
++ SaveAllItemsOfTodoList(ActionEvent): Save tasks to todolist
++ SaveAllItemsOfEveryTodoList(ActionEvent) Save tasks to multiple todolists
+}
+
+
+javafx.Application <|- App
+App -- TaskListController
+TodoListFunctions *--> TaskFunctions
+ToDoListController *--> TaskListController
+TodoListFunctions -- ToDoListController
+TaskFunctions -- TaskListController
+TodoListFunctions -- TaskFunctions
+ToDoListController -- TaskListController
+
+@enduml
